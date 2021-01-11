@@ -7,6 +7,8 @@ let y = 0
 let directionHorizontal = true
 let directionVertical = true
 
+var img = new Image()
+img.src = 'img/dvd.png';
 
 function gameLoop(){
 
@@ -16,6 +18,8 @@ function gameLoop(){
     ctx.fillStyle = 'red'
     ctx.fillRect(x,y,100 ,100)
   
+    ctx.drawImage(img,x,y,img.width,img.height)
+    
     if(directionHorizontal){
         x+=3
        
@@ -41,4 +45,30 @@ function gameLoop(){
         directionVertical = !directionVertical
     }
 }
-setInterval(gameLoop, 1000/60)
+
+function rect_draw(){
+
+    ctx.fillStyle = this.color;
+    ctx.fillRect(this.x, this.y, this.w, this.h);
+    this.x += this.dx
+    this.y += this.dy
+}
+img.onload = function() {
+    setInterval(gameLoop, 1000/60)
+}
+
+function rect_create(x,y,w,h,color,dx,dy){
+
+let obj = {
+
+    x:x,
+    y:y,
+    w:w,
+    h:h,
+    color:color,
+    dx:dx,
+    dy:dy
+}
+return obj
+
+}
