@@ -2,6 +2,8 @@
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 
+
+
 let x = 0
 let y = 0
 let directionHorizontal = true
@@ -10,6 +12,42 @@ let directionVertical = true
 var img = new Image()
 img.src = 'img/dvd.png';
 
+
+var ongoingTouches = [];
+
+
+function startup() {
+    var el = document.getElementById("canvas");
+    var handleStart
+    var handleEnd
+    var handleCancel
+    var handleMove
+    el.addEventListener("touchstart", handleStart, false);
+    el.addEventListener("touchend", handleEnd, false);
+    el.addEventListener("touchcancel", handleCancel, false);
+    el.addEventListener("touchmove", handleMove, false);
+  }
+  
+  document.addEventListener("DOMContentLoaded", startup);
+
+  function handleStart(evt) {
+    evt.preventDefault();
+    console.log("touchstart.");
+    var el = document.getElementById("canvas");
+    var ctx = el.getContext("2d");
+    var touches = evt.changedTouches;
+  
+    for (var i = 0; i < touches.length; i++) {
+      console.log("touchstart:" + i + "...");
+      ongoingTouches.push(copyTouch(touches[i]));
+      var color = colorForTouch(touches[i]);
+      ctx.beginPath();
+      ctx.arc(touches[i].pageX, touches[i].pageY, 4, 0, 2 * Math.PI, false);  // a circle at the start
+      ctx.fillStyle = color;
+      ctx.fill();
+      console.log("touchstart:" + i + ".");
+    }
+  }
 function gameLoop(){
 
     ctx.fillStyle = "white"
@@ -47,16 +85,6 @@ function gameLoop(){
 }
 img.onload = function() {
     setInterval(gameLoop, 1000/60)
-
-    function startup() {
-        var el = document.getElementById("canvas");
-        el.addEventListener("touchstart", handleStart, false);
-        el.addEventListener("touchend", handleEnd, false);
-        el.addEventListener("touchcancel", handleCancel, false);
-        el.addEventListener("touchmove", handleMove, false);
-      }
-      
-      document.addEventListener("DOMContentLoaded", startup);
 }
 
 function rect_draw(){
