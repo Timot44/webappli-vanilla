@@ -18,7 +18,7 @@ function gameLoop(){
     ctx.fillStyle = 'red'
     ctx.fillRect(x,y,100 ,100)
   
-    ctx.drawImage(img,x,y,img.width,img.height)
+    ctx.drawImage(img,x,y,100,100)
     
     if(directionHorizontal){
         x+=3
@@ -45,6 +45,19 @@ function gameLoop(){
         directionVertical = !directionVertical
     }
 }
+img.onload = function() {
+    setInterval(gameLoop, 1000/60)
+
+    function startup() {
+        var el = document.getElementById("canvas");
+        el.addEventListener("touchstart", handleStart, false);
+        el.addEventListener("touchend", handleEnd, false);
+        el.addEventListener("touchcancel", handleCancel, false);
+        el.addEventListener("touchmove", handleMove, false);
+      }
+      
+      document.addEventListener("DOMContentLoaded", startup);
+}
 
 function rect_draw(){
 
@@ -53,9 +66,8 @@ function rect_draw(){
     this.x += this.dx
     this.y += this.dy
 }
-img.onload = function() {
-    setInterval(gameLoop, 1000/60)
-}
+    
+
 
 function rect_create(x,y,w,h,color,dx,dy){
 
