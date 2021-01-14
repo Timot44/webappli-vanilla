@@ -6,8 +6,8 @@ const ctx = canvas.getContext('2d');
 
 let x = 0
 let y = 0
-let directionHorizontal = true
-let directionVertical = true
+let moveX = 3
+let moveY = 3
 
 var img = new Image()
 img.src = 'img/dvd.png';
@@ -16,38 +16,8 @@ img.src = 'img/dvd.png';
 var ongoingTouches = [];
 
 
-function startup() {
-    var el = document.getElementById("canvas");
-    var handleStart
-    var handleEnd
-    var handleCancel
-    var handleMove
-    el.addEventListener("touchstart", handleStart, false);
-    el.addEventListener("touchend", handleEnd, false);
-    el.addEventListener("touchcancel", handleCancel, false);
-    el.addEventListener("touchmove", handleMove, false);
-  }
-  
-  document.addEventListener("DOMContentLoaded", startup);
 
-  function handleStart(evt) {
-    evt.preventDefault();
-    console.log("touchstart.");
-    var el = document.getElementById("canvas");
-    var ctx = el.getContext("2d");
-    var touches = evt.changedTouches;
   
-    for (var i = 0; i < touches.length; i++) {
-      console.log("touchstart:" + i + "...");
-      ongoingTouches.push(copyTouch(touches[i]));
-      var color = colorForTouch(touches[i]);
-      ctx.beginPath();
-      ctx.arc(touches[i].pageX, touches[i].pageY, 4, 0, 2 * Math.PI, false);  // a circle at the start
-      ctx.fillStyle = color;
-      ctx.fill();
-      console.log("touchstart:" + i + ".");
-    }
-  }
 function gameLoop(){
 
     ctx.fillStyle = "white"
@@ -56,59 +26,27 @@ function gameLoop(){
     ctx.fillStyle = 'red'
     ctx.fillRect(x,y,100 ,100)
   
-    ctx.drawImage(img,x,y,100,100)
+    //ctx.drawImage(img,x,y,100,100)
     
-    if(directionHorizontal){
-        x+=3
-       
+      
+    if(x+moveX >= canvas.width-100 || x+moveX <= 0){
+        moveX *= -1;
+    }
+    if(y+moveY >= canvas.height-100 || y+moveY <= 0){
+        moveY *= -1;
+    }
+    x+=moveX;
+    y+=moveY;
 
-    }else
-    {
-        x-=3
-        
-    }
-    if(directionVertical){
-        y+=3
+  
 
-    }
-    else{
-
-        y-=3
-    }
-   
-    if(x>screen.width-100||  x<0){
-        directionHorizontal = !directionHorizontal
-    }
-    else if(y>screen.height-100|| y<0){
-        directionVertical = !directionVertical
-    }
 }
 img.onload = function() {
     setInterval(gameLoop, 1000/60)
 }
 
-function rect_draw(){
-
-    ctx.fillStyle = this.color;
-    ctx.fillRect(this.x, this.y, this.w, this.h);
-    this.x += this.dx
-    this.y += this.dy
-}
     
 
 
-function rect_create(x,y,w,h,color,dx,dy){
 
-let obj = {
 
-    x:x,
-    y:y,
-    w:w,
-    h:h,
-    color:color,
-    dx:dx,
-    dy:dy
-}
-return obj
-
-}
