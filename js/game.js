@@ -52,6 +52,8 @@ function gameLoop(){
 }
 function startup() {
     let canv = document.getElementById("canvas");
+    canv.height = screen.height;
+    canv.width = screen.width;
     canv.addEventListener("touchstart", handleStart, false);
     canv.addEventListener("touchend", handleEnd, false);
     canv.addEventListener("touchcancel", handleCancel, false);
@@ -148,7 +150,7 @@ function startup() {
     return { identifier, pageX, pageY };
   }
 
-  function colorForTouch(touch) {
+  /*function colorForTouch(touch) {
     var r = touch.identifier % 16;
     var g = Math.floor(touch.identifier / 3) % 16;
     var b = Math.floor(touch.identifier / 7) % 16;
@@ -158,7 +160,7 @@ function startup() {
     var color = "#" + r + g + b;
     console.log("color for touch with identifier " + touch.identifier + " = " + color);
     return color;
-  }
+  }*/
 
   function ongoingTouchIndexById(idToFind) {
     for (var i = 0; i < ongoingTouches.length; i++) {
@@ -169,4 +171,10 @@ function startup() {
       }
     }
     return -1;    // not found
+  }
+
+  function colorForTouch(touch) {
+    var id = touch.identifier;
+    id = id.toString(16); // creer un nombre hexadécimal
+    return "#" + id + id + id;
   }
