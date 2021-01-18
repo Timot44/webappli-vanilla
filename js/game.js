@@ -68,8 +68,8 @@ function startup() {
     var el = document.getElementById("canvas");
     var ctx = el.getContext("2d");
     var touches = evt.changedTouches;
-    ctx.height = screen.height;
-    ctx.width = screen.width;
+    el.height = screen.height;
+    el.width = screen.width;
 
     for (var i = 0; i < touches.length; i++) {
       console.log("touchstart:" + i + "...");
@@ -89,8 +89,8 @@ function startup() {
     var el = document.getElementById("canvas");
     var ctx = el.getContext("2d");
     var touches = evt.changedTouches;
-    ctx.height = screen.height;
-    ctx.width = screen.width;
+    el.height = screen.height;
+    el.width = screen.width;
 
     for (var i = 0; i < touches.length; i++) {
       var color = colorForTouch(touches[i]);
@@ -126,9 +126,9 @@ function startup() {
     var el = document.getElementById("canvas");
     var ctx = el.getContext("2d");
     var touches = evt.changedTouches;
-    ctx.height = screen.height;
-    ctx.width = screen.width;
-    
+    el.height = screen.height;
+    el.width = screen.width;
+
     for (var i = 0; i < touches.length; i++) {
       var color = colorForTouch(touches[i]);
       var idx = ongoingTouchIndexById(touches[i].identifier);
