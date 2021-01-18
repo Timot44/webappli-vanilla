@@ -68,7 +68,9 @@ function startup() {
     var el = document.getElementById("canvas");
     var ctx = el.getContext("2d");
     var touches = evt.changedTouches;
-  
+    ctx.height = screen.height;
+    ctx.width = screen.width;
+
     for (var i = 0; i < touches.length; i++) {
       console.log("touchstart:" + i + "...");
       ongoingTouches.push(copyTouch(touches[i]));
@@ -87,7 +89,9 @@ function startup() {
     var el = document.getElementById("canvas");
     var ctx = el.getContext("2d");
     var touches = evt.changedTouches;
-  
+    ctx.height = screen.height;
+    ctx.width = screen.width;
+
     for (var i = 0; i < touches.length; i++) {
       var color = colorForTouch(touches[i]);
       var idx = ongoingTouchIndexById(touches[i].identifier);
@@ -122,7 +126,9 @@ function startup() {
     var el = document.getElementById("canvas");
     var ctx = el.getContext("2d");
     var touches = evt.changedTouches;
-  
+    ctx.height = screen.height;
+    ctx.width = screen.width;
+    
     for (var i = 0; i < touches.length; i++) {
       var color = colorForTouch(touches[i]);
       var idx = ongoingTouchIndexById(touches[i].identifier);
@@ -150,7 +156,7 @@ function startup() {
     return { identifier, pageX, pageY };
   }
 
-  /*function colorForTouch(touch) {
+  function colorForTouch(touch) {
     var r = touch.identifier % 16;
     var g = Math.floor(touch.identifier / 3) % 16;
     var b = Math.floor(touch.identifier / 7) % 16;
@@ -160,7 +166,7 @@ function startup() {
     var color = "#" + r + g + b;
     console.log("color for touch with identifier " + touch.identifier + " = " + color);
     return color;
-  }*/
+  }
 
   function ongoingTouchIndexById(idToFind) {
     for (var i = 0; i < ongoingTouches.length; i++) {
@@ -173,8 +179,4 @@ function startup() {
     return -1;    // not found
   }
 
-  function colorForTouch(touch) {
-    var id = touch.identifier;
-    id = id.toString(16); // creer un nombre hexadécimal
-    return "#" + id + id + id;
-  }
+ 
