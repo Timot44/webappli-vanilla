@@ -2,7 +2,8 @@
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 
-
+canvas.width = document.documentElement.clientWidth || document.body.clientWidth;
+canvas.height = document.documentElement.clientHeight || document.body.clientHeight;
 
 let x = 0
 let y = 0
@@ -52,8 +53,7 @@ function gameLoop(){
 }
 function startup() {
     let canv = document.getElementById("canvas");
-    canv.height = screen.height;
-    canv.width = screen.width;
+    
     canv.addEventListener("touchstart", handleStart, false);
     canv.addEventListener("touchend", handleEnd, false);
     canv.addEventListener("touchcancel", handleCancel, false);
@@ -68,8 +68,7 @@ function startup() {
     var el = document.getElementById("canvas");
     var ctx = el.getContext("2d");
     var touches = evt.changedTouches;
-    el.height = screen.height;
-    el.width = screen.width;
+  
 
     for (var i = 0; i < touches.length; i++) {
       console.log("touchstart:" + i + "...");
@@ -89,8 +88,7 @@ function startup() {
     var el = document.getElementById("canvas");
     var ctx = el.getContext("2d");
     var touches = evt.changedTouches;
-    el.height = screen.height;
-    el.width = screen.width;
+    
 
     for (var i = 0; i < touches.length; i++) {
       var color = colorForTouch(touches[i]);
@@ -126,8 +124,7 @@ function startup() {
     var el = document.getElementById("canvas");
     var ctx = el.getContext("2d");
     var touches = evt.changedTouches;
-    el.height = screen.height;
-    el.width = screen.width;
+    
 
     for (var i = 0; i < touches.length; i++) {
       var color = colorForTouch(touches[i]);
