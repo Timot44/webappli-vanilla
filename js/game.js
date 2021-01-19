@@ -69,7 +69,8 @@ function startup() {
     var ctx = el.getContext("2d");
     var touches = evt.changedTouches;
   
-
+    el.width  = innerWidth;
+    el.height = innerHeight;
     for (var i = 0; i < touches.length; i++) {
       console.log("touchstart:" + i + "...");
       ongoingTouches.push(copyTouch(touches[i]));
@@ -89,7 +90,8 @@ function startup() {
     var ctx = el.getContext("2d");
     var touches = evt.changedTouches;
     
-
+    el.width  = innerWidth;
+    el.height = innerHeight;
     for (var i = 0; i < touches.length; i++) {
       var color = colorForTouch(touches[i]);
       var idx = ongoingTouchIndexById(touches[i].identifier);
@@ -125,7 +127,8 @@ function startup() {
     var ctx = el.getContext("2d");
     var touches = evt.changedTouches;
     
-
+    el.width  = innerWidth;
+    el.height = innerHeight;
     for (var i = 0; i < touches.length; i++) {
       var color = colorForTouch(touches[i]);
       var idx = ongoingTouchIndexById(touches[i].identifier);
