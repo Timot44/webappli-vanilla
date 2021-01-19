@@ -53,8 +53,7 @@ function gameLoop(){
 }
 function startup() {
     let canv = document.getElementById("canvas");
-    canv.width = document.documentElement.clientWidth || document.body.clientWidth;
-    canv.height = document.documentElement.clientHeight || document.body.clientHeight;
+   
     canv.addEventListener("touchstart", handleStart, false);
     canv.addEventListener("touchend", handleEnd, false);
     canv.addEventListener("touchcancel", handleCancel, false);
