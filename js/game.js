@@ -22,7 +22,7 @@ const index = getRandomIntInclusive(0, 100);
 let frame = 60;
 
 const colors = ['#ec4646', '#663f3f', '#51c2d5', '#bbf1fa']
-  
+
 function initialisation() {
   for (let i = 0; i < index; i++) {
     const xCircle = Math.random() * canvas.width
@@ -100,7 +100,7 @@ function drawCircle(obj) {
   ctx.arc(obj.xCircle, obj.yCircle, obj.rCircle, obj.startAngle * frame, obj.endAngle * Math.PI * frame, false);
   ctx.lineWidth = obj.lineWidth;
   ctx.strokeStyle = colors[Math.floor(Math.random() * colors.length)];
-  
+
   ctx.stroke();
   ctx.fill();
   //Fait bouger les cercles
