@@ -142,11 +142,11 @@ function handleStart(evt) {
   for (var i = 0; i < touches.length; i++) {
     console.log("touchstart:" + i + "...");
     ongoingTouches.push(copyTouch(touches[i]));
-    var color = colorForTouch(touches[i]);
+    
     ctx.beginPath();
    initialisation();
    objs.forEach(drawCircle);
-  console.log("touchstart:" + i + ".");
+    console.log("touchstart:" + i + ".");
     
 }
 }
