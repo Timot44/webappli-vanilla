@@ -134,8 +134,8 @@ document.addEventListener("DOMContentLoaded", startup);
 function handleStart(evt) {
   evt.preventDefault();
   console.log("touchstart.");
-  var el = document.getElementById("canvas");
-  var ctx = el.getContext("2d");
+ 
+
   var touches = evt.changedTouches;
 
 
@@ -144,14 +144,12 @@ function handleStart(evt) {
     ongoingTouches.push(copyTouch(touches[i]));
     var color = colorForTouch(touches[i]);
     ctx.beginPath();
-    ctx.arc(touches[i].pageX, touches[i].pageY, 4, 0, 2 * Math.PI, false); // a circle at the start
-    ctx.fillStyle = color;
-    ctx.fill();
-    console.log("touchstart:" + i + ".");
-    drawCircle(circleCreate)
-  }
+   initialisation();
+   objs.forEach(drawCircle);
+  console.log("touchstart:" + i + ".");
+    
 }
-
+}
 function handleEnd(evt) {
   evt.preventDefault();
 
