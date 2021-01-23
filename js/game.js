@@ -17,7 +17,7 @@ img.src = 'img/dvd.png';
 var ongoingTouches = [];
 
 const objs = [];
-const index = getRandomIntInclusive(0, 50);
+const index = getRandomIntInclusive(1, 20);
 
 let frame = 60;
 
