@@ -124,12 +124,9 @@ function getRandomIntInclusive(min, max) {
 
 
 function startup() {
-  let canv = document.getElementById("canvas");
 
-  canv.addEventListener("touchstart", handleStart, false);
-  canv.addEventListener("touchend", handleEnd, false);
-  canv.addEventListener("touchcancel", handleCancel, false);
-  canv.addEventListener("touchmove", handleMove, false);
+  canvas.addEventListener("touchstart", handleStart, false);
+ 
 }
 
 document.addEventListener("DOMContentLoaded", startup);
@@ -151,6 +148,7 @@ function handleStart(evt) {
     ctx.fillStyle = color;
     ctx.fill();
     console.log("touchstart:" + i + ".");
+    drawCircle(circleCreate);
   }
 }
 
