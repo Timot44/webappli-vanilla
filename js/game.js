@@ -148,7 +148,7 @@ function handleStart(evt) {
     ctx.fillStyle = color;
     ctx.fill();
     console.log("touchstart:" + i + ".");
-    drawCircle(circleCreate);
+    drawCircle(circleCreate)
   }
 }
 
